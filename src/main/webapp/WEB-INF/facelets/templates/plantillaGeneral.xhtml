@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:uti="http://java.sun.com/jsf/composite/util">
+<!-- style="font-size:12px;" -->
+<h:head>
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="util" name="sgmEstilos.css" />
+	<h:outputStylesheet library="util" name="sgmPantalla.css" />
+	
+	<title><ui:insert name="titulo"> Municipio
+		</ui:insert></title>
+
+<script>
+        PrimeFaces.locales['es'] = {
+                closeText: 'Cerrar',
+                prevText: 'Anterior',
+                nextText: 'Siguiente',
+                monthNames: ['Enero','Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+                dayNames: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+                dayNamesShort: ['Dom','Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                dayNamesMin: ['D','L','M','M','J','V','S'],
+                weekHeader: 'Semana',
+                firstDay: 1,
+                isRTL: false,
+                showMonthAfterYear: false,
+                yearSuffix: '',
+                timeOnlyTitle: 'Sólo hora',
+                timeText: 'Tiempo',
+                hourText: 'Hora',
+                minuteText: 'Minuto',
+                secondText: 'Segundo',
+                currentText: 'Fecha actual',
+                ampm: false,
+                month: 'Mes',
+                week: 'Semana',
+                day: 'Día',
+                allDayText : 'Todo el día'
+        };
+       
+</script>
+	
+</h:head>
+<h:body>
+	
+	<!-- <f:loadBundle basename="jorgeortiz.fusionsystem.web.Componente" var="componente" /> -->
+	<h:panelGroup layout="block" id="pantalla">
+		<p:growl id="mensajes" showDetail="true" globalOnly="true"/>
+		<h:panelGroup layout="block" id="cuerpo">
+			
+			<h:form id="forma" >
+				
+				
+						<p:menubar>
+					        <p:submenu label="Plantas" icon="fa fa-tree">
+					        	<p:menuitem value="Nuevo" action="nuevo-tipo-planta" ajax="false" immediate="true"/>
+								<p:menuitem value="Listar Plantas" action="list-tipo-plantas" ajax="false" immediate="true"/>
+							</p:submenu>
+							<p:submenu label="Abonos Quimicos" icon="fa fa-flask">
+					        	<p:menuitem value="Nuevo" action="nuevo-tipo-abono-quimico" ajax="false" immediate="true"/>
+								<p:menuitem value="Listar Abonos Quimicos" action="list-tipo-abono-quimicos" ajax="false" immediate="true"/>
+							</p:submenu>
+							<p:submenu label="Suelos" icon="fa fa-pied-piper">
+					        	<p:menuitem value="Nuevo" action="nuevo-tipo-suelo" ajax="false" immediate="true"/>
+								<p:menuitem value="Listar tipos suelos" action="list-tipo-suelos" ajax="false" immediate="true"/>
+							</p:submenu>
+					        <p:submenu label="Persona" icon="fa fa-user">
+					        	<p:menuitem value="Nuevo" action="nueva_persona?faces-redirect=true" ajax="false" immediate="true"/>
+								<p:menuitem value="Listar Personas" action="list_persona?faces-redirect=true" ajax="false" immediate="true"/>
+							</p:submenu>
+							
+							<p:submenu label="Dispositivos" icon="fa fa-user">
+					        	<p:menuitem value="Nuevo" action="nueva_device?faces-redirect=true" ajax="false" immediate="true"/>
+								<p:menuitem value="Listar Dispositivos" action="list_device?faces-redirect=true" ajax="false" immediate="true"/>
+							</p:submenu>
+							
+							<p:submenu label="Usuarios" icon="fa fa-user">
+					        	<p:menuitem value="Nuevo" action="nuevo-usuario" ajax="false" immediate="true"/>
+								<p:menuitem value="Listar Usuarios" action="list-usuarios" ajax="false" immediate="true"/>
+							</p:submenu>
+							<p:submenu label="Sesion" icon="fa fa-user">
+					        	<p:menuitem value="Salir" action="iniciar-sesion?faces-redirect=true" ajax="false" immediate="true"/>
+								
+							</p:submenu>
+					    </p:menubar>
+				
+				
+				<ui:insert name="barra">
+				</ui:insert>
+					
+					
+					<div>
+					<ui:insert name="cuerpo">
+					
+						
+						
+					</ui:insert>
+					</div>	
+				
+			</h:form>
+			
+			<ui:insert name="listas">
+			</ui:insert>
+		</h:panelGroup>
+	</h:panelGroup>
+	 <p class="footer-text text-center">GAD MUNICIPAL DEL CANTÓN CUENCA</p>
+	 
+</h:body>
+</html>

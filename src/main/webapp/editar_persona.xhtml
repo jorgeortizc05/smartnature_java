@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:uti="http://java.sun.com/jsf/composite/util"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">
+<!-- 
+Autor: ING. JORGE LUIS ORTIZ CACERES
+Fecha de Creacion:14/09/2018
+Fecha de Modificacion: 22/09/2018
+Empresa: FUSIONSYSTEM JORGE INC F.S.J
+Funcion: Controlador Articulo Controller.
+-->
+<h:head>
+	<f:metadata>
+        <f:viewParam id="id" name="id" value="#{personaView.vIdPersona}"/>
+        <f:viewAction action="#{personaView.loadPersona()}" />
+ 	</f:metadata>
+</h:head>
+<ui:composition
+	template="/WEB-INF/facelets/templates/plantillaGeneral.xhtml">
+
+	<ui:define name="cuerpo" bootsFacesDecorator="true">
+	
+	<b:panel id="pn1" title="Nueva Persona">
+	<p:panelGrid columns="3" id="pgPersona">
+		<h:outputLabel value="Nombre:" for="nombre" />
+		<b:inputText value="#{personaView.newPersona.nombre}" id="nombre"/>
+		<p:message for="nombre"/>
+		
+		<h:outputLabel value="Apellido:" for="apellido" />
+		<b:inputText value="#{personaView.newPersona.apellido}" id="apellido"/>
+		<p:message for="apellido"/>
+		
+		<h:outputLabel value="Email:" for="email" />
+		<b:inputText value="#{personaView.newPersona.email}" id="email"/>
+		<p:message for="email"/>
+		
+		<h:outputLabel value="Telefono" for="telefono" />
+		<b:inputText value="#{personaView.newPersona.telefono}" id="telefono"/>
+		<p:message for="telefono"/>
+	</p:panelGrid>
+		
+		<b:commandButton value="Guardar" action="#{personaView.guardarPersona()}" update="mensajes pgPersona" look="primary"/>
+		<b:commandButton  value="Cancelar" action="list_persona?faces-redirect=true" immediate="true" ajax="false" look="danger"/>
+		
+	</b:panel>
+	</ui:define>
+	
+
+
+</ui:composition>
+</html>

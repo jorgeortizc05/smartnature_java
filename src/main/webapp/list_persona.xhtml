@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:uti="http://java.sun.com/jsf/composite/util"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui"
+    xmlns:p="http://primefaces.org/ui">
+<!-- 
+Autor: ING. JORGE LUIS ORTIZ CACERES
+Fecha de Creacion:14/09/2018
+Fecha de Modificacion: 22/09/2018
+Empresa: CASAORTIZ JORGE INC C.O.J
+Funcion: Controlador Articulo Controller.
+-->
+<h:head>
+	<f:metadata>
+        
+        <f:viewAction action="#{personaView.loadPersonas()}" />
+ 	</f:metadata>
+</h:head>
+<ui:composition
+	template="/WEB-INF/facelets/templates/plantillaGeneral.xhtml">
+
+	<ui:define name="cuerpo">
+	
+	<div style="width: 40%;">
+	<b:panel id="pn1" title="Dispositivos" look="primary">
+	<b:dataTable id="tbl" var="per"
+		value="#{personaView.personas}"
+		autoUpdate="true" excel="true" csv="true" columnVisibility="true" copy="true" print="true">
+		
+		<b:dataTableColumn value="#{per.nombre} #{per.apellido}" label="Nombres"/>
+		<b:dataTableColumn value="#{per.email}" label="Email"/>
+		<b:dataTableColumn value="#{per.telefono}" label="Telefono"/>
+		<b:dataTableColumn label="Opciones">
+			<b:commandButton value="X" action="#{personaView.eliminar(per.id)}"/>
+			<b:commandButton value="U" action="#{personaView.goActualizar(per.id)}"/>
+		</b:dataTableColumn>
+		
+		
+	</b:dataTable>
+	
+	</b:panel>	
+	</div>
+		
+	</ui:define>
+	
+
+
+</ui:composition>
+</html>
