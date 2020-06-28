@@ -1,0 +1,13 @@
+<driver name="postgresql-driver" module="org.postgresql">
+	<driver-class>org.postgresql.Driver</driver-class>
+</driver>
+
+
+<datasource jta="true" jndi-name="java:jboss/datasources/smartnatureDS" pool-name="smartnatureDS" enabled="true" use-java-context="true" use-ccm="true">
+	<connection-url>jdbc:postgresql://localhost:5432/smartnature</connection-url>
+	<driver>postgresql-driver</driver>
+	<security>
+		<user-name>jorge</user-name>
+		<password>jorge</password>
+	</security>
+</datasource>
