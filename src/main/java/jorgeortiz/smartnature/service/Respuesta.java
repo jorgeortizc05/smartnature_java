@@ -1,8 +1,13 @@
 package jorgeortiz.smartnature.service;
 
+import java.io.Serializable;
 
-public class Respuesta {
+public class Respuesta implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int codigo;
 	private String mensaje;
 	
