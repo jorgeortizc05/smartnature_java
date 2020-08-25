@@ -1,0 +1,40 @@
+
+
+FUNCTION_BLOCK controlador
+
+VAR_INPUT
+	calor : REAL;
+END_VAR
+
+VAR_OUTPUT
+	velocidad : REAL;
+END_VAR
+
+FUZZIFY calor
+	TERM bajo := (0,0) (3,1) (6,0);
+	TERM medio := (3,0) (6,1) (9,1) (12,0);
+	TERM alto := (9,0) (12,1) (15,0);
+END_FUZZIFY
+
+DEFUZZIFY velocidad
+	TERM lento := (0,0) (4,1) (8,0);
+	TERM media := (7,0) (10,1) (13,0);
+	TERM alta := (11,0) (14,1) (17,0);
+	
+	METHOD: COG;
+	DEFAULT := 0;
+END_DEFUZZIFY
+
+RULEBLOCK No1
+	AND : MIN;
+	ACT : MIN;
+	ACCU : MAX;
+	
+	RULE 1 : IF calor IS bajo THEN velocidad IS lento;
+	RULE 2 : IF calor IS medio THEN velocidad IS media;
+	RULE 3 : IF calor IS alto THEN velocidad IS alta;
+END_RULEBLOCK
+
+
+
+END_FUNCTION_BLOCK
