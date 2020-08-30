@@ -1,4 +1,4 @@
-package jorgeortiz.smartnature.service;
+package jorgeortiz.smartnature.main;
 
 import net.sourceforge.jFuzzyLogic.FIS;
 
