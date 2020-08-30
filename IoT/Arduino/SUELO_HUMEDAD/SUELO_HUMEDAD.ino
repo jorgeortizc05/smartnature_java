@@ -42,22 +42,28 @@ void loop() {
   humedadAmb = dht.readHumidity(); //Obtengo la humedad ambiental
   tempAmb = dht.readTemperature(); //Temperatura ambiental
 
-  Serial.print("Temperatura ambiental: "); Serial.print(tempAmb);
-  Serial.print("C Humedad ambiental: "); Serial.print(humedadAmb); Serial.println("%");
+  //Serial.print("Temperatura ambiental: "); Serial.print(tempAmb);
+  //Serial.print("C Humedad ambiental: "); Serial.print(humedadAmb); Serial.println("%");
 
-  Serial.print("Humedad Suelo: "); Serial.print(sensorSuelo);
-  delay(1000);
+  
 
+  Serial.print(humedadSuelo);
+  /*Serial.print(";");
+  Serial.print(t);
+  Serial.print(";");
+  Serial.print(h);
+  Serial.println();*/
+  delay(10000); 
+
+/*
   if(sensorSuelo >= 700) // el valor que considero seco y hay que regar es de 700
   {
-   // Si la tierra está seca, comenzara a regar
-   // Riega durante 1 segundo y espera a comprobar la humedad otro segundo
-   Serial.println("La tierra está seca, comienza el riego");
+   //Si la tierra está seca, comenzara a regar
+   //Riega durante 1 segundo y espera a comprobar la humedad otro segundo
    digitalWrite(electrovalvula, HIGH); //se abre
    delay(2000); //Riego por 2 segundos
    digitalWrite(electrovalvula, LOW); //se cierra
    delay(1000);
   }
-  
-  delay(1000);
+  */
 }

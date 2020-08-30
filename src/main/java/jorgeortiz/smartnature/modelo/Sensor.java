@@ -1,6 +1,7 @@
 package jorgeortiz.smartnature.modelo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,8 +40,14 @@ public class Sensor implements Serializable {
 	@Column(name = "temp_ambiente")
 	private Double tempAmbiente;
 	
+	@Column(name = "hum_ambiente")
+	private Double humedadAmbiente;
+	
 	@Column(name = "humedad_suelo")
 	private Double humedadSuelo;
+	
+	@Column(name = "fecha_captura")
+	private Date fechaCaptura = new Date();
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Device device;
@@ -61,12 +68,28 @@ public class Sensor implements Serializable {
 		this.tempAmbiente = tempAmbiente;
 	}
 
+	public Double getHumedadAmbiente() {
+		return humedadAmbiente;
+	}
+
+	public void setHumedadAmbiente(Double humedadAmbiente) {
+		this.humedadAmbiente = humedadAmbiente;
+	}
+
 	public Double getHumedadSuelo() {
 		return humedadSuelo;
 	}
 
 	public void setHumedadSuelo(Double humedadSuelo) {
 		this.humedadSuelo = humedadSuelo;
+	}
+	
+	public Date getFechaCaptura() {
+		return fechaCaptura;
+	}
+
+	public void setFechaCaptura(Date fechaCaptura) {
+		this.fechaCaptura = fechaCaptura;
 	}
 
 	public Device getDevice() {
@@ -76,6 +99,5 @@ public class Sensor implements Serializable {
 	public void setDevice(Device device) {
 		this.device = device;
 	}
-	
 	
 }
