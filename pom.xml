@@ -99,25 +99,21 @@
             of them are provided by JBoss WildFly -->
 		<!-- Primefaces, Bootsfaces y omnifaces -->
         <dependency>
-        	<groupId>org.primefaces</groupId>
-        	<artifactId>primefaces</artifactId>
-        	<version>7.0</version>
-        </dependency>
-        <dependency>
 		  <groupId>net.bootsfaces</groupId>
 		  <artifactId>bootsfaces</artifactId>
 		  <version>1.4.0</version>
 		  <scope>compile</scope>
 		</dependency>
-        <dependency>
+		<dependency>
+		  <groupId>org.primefaces</groupId>
+		  <artifactId>primefaces</artifactId>
+		  <version>6.2</version>
+		  <scope>compile</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.primefaces.themes</groupId>
 			<artifactId>all-themes</artifactId>
 			<version>1.0.10</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.omnifaces</groupId>
-		    <artifactId>omnifaces</artifactId>
-		    <version>3.4</version>
 		</dependency>
         <!-- Import the CDI API, we use provided scope as the API is included in 
             JBoss WildFly -->

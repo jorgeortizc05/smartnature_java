@@ -22,13 +22,11 @@ Funcion: Controlador Articulo Controller.
 <ui:composition
 	template="/WEB-INF/facelets/templates/plantillaGeneral.xhtml">
 
-	<ui:define name="cuerpo">
-	
-	<div style="width: 40%;">
+	<ui:define name="cuerpo" bootsFacesDecorator="true">
 	<b:panel id="pn1" title="Plataformas" look="primary">
 	<b:dataTable id="tbl" var="plat"
 		value="#{plataformaView.plataformas}"
-		autoUpdate="true" excel="true" csv="true" columnVisibility="true" copy="true" print="true">
+		autoUpdate="true">
 		
 		<b:dataTableColumn value="#{plat.nombre}" label="Nombre"/>
 		<b:dataTableColumn value="#{plat.descripcion}" label="Descripcion"/>
@@ -42,7 +40,6 @@ Funcion: Controlador Articulo Controller.
 	</b:dataTable>
 	
 	</b:panel>	
-	</div>
 		
 	</ui:define>
 	

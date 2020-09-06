@@ -6,14 +6,12 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:uti="http://java.sun.com/jsf/composite/util">
+	xmlns:uti="http://java.sun.com/jsf/composite/util"
+	xmlns:b="http://bootsfaces.net/ui">
 <!-- style="font-size:12px;" -->
 <h:head>
 	
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<h:outputStylesheet library="util" name="sgmEstilos.css" />
-	<h:outputStylesheet library="util" name="sgmPantalla.css" />
-	<h:outputStylesheet library="util" name="/css/bootstrap.css" />
 	<title><ui:insert name="titulo"> Municipio
 		</ui:insert></title>
 
@@ -48,54 +46,57 @@
 </script>
 	
 </h:head>
-<h:body>
+<h:body style="padding: 30px;">
 	
 	<!-- <f:loadBundle basename="jorgeortiz.fusionsystem.web.Componente" var="componente" /> -->
-	<h:panelGroup layout="block" id="pantalla">
+	<b:container>
+	<b:jumbotron>
+               
+     
 		<p:growl id="mensajes" showDetail="true" globalOnly="true"/>
 		<h:panelGroup layout="block" id="cuerpo">
 			
-			<h:form id="forma" >
+			<h:form id="forma" > 
+				<p:menubar>
+			        <p:submenu label="Plantas" icon="fa fa-tree">
+			        	<p:menuitem value="Nuevo" action="nueva_planta?faces-redirect=true" ajax="false" immediate="true"/>
+						<p:menuitem value="Listar Plantas" action="list_planta?faces-redirect=true" ajax="false" immediate="true"/>
+					</p:submenu>
+					<p:submenu label="Abonos Quimicos" icon="fa fa-flask">
+			        	<p:menuitem value="Nuevo" action="nuevo-tipo-abono-quimico" ajax="false" immediate="true"/>
+						<p:menuitem value="Listar Abonos Quimicos" action="list-tipo-abono-quimicos" ajax="false" immediate="true"/>
+					</p:submenu>
+					<p:submenu label="Suelos" icon="fa fa-pied-piper">
+			        	<p:menuitem value="Nuevo" action="nuevo_tipo_suelo?faces-redirect=true" ajax="false" immediate="true"/>
+						<p:menuitem value="Listar tipos suelos" action="list_tipo_suelo?faces-redirect=true" ajax="false" immediate="true"/>
+					</p:submenu>
+					<p:submenu label="Plataformas" icon="fa fa-list-ul">
+			        	<p:menuitem value="Nuevo" action="nueva_plataforma?faces-redirect=true" ajax="false" immediate="true"/>
+						<p:menuitem value="Listar Plataformas" action="list_plataforma?faces-redirect=true" ajax="false" immediate="true"/>
+					</p:submenu>
+			        <p:submenu label="Persona" icon="fa fa-user">
+			        	<p:menuitem value="Nuevo" action="nueva_persona?faces-redirect=true" ajax="false" immediate="true"/>
+						<p:menuitem value="Listar Personas" action="list_persona?faces-redirect=true" ajax="false" immediate="true"/>
+					</p:submenu>
+					
+					<p:submenu label="Dispositivos" icon="fa fa-tablet">
+			        	<p:menuitem value="Nuevo" action="nueva_device?faces-redirect=true" ajax="false" immediate="true"/>
+						<p:menuitem value="Listar Dispositivos" action="list_device?faces-redirect=true" ajax="false" immediate="true"/>
+					</p:submenu>
+					
+					<p:submenu label="Usuarios" icon="fa fa-users">
+			        	<p:menuitem value="Nuevo" action="nuevo-usuario" ajax="false" immediate="true"/>
+						<p:menuitem value="Listar Usuarios" action="list-usuarios" ajax="false" immediate="true"/>
+					</p:submenu>
+					<p:submenu label="Sesion" icon="fa fa-user">
+			        	<p:menuitem value="Salir" action="iniciar-sesion?faces-redirect=true" ajax="false" immediate="true"/>
+						
+					</p:submenu>
+			    </p:menubar>
 				
-				
-						<p:menubar>
-					        <p:submenu label="Plantas" icon="fa fa-tree">
-					        	<p:menuitem value="Nuevo" action="nueva_planta?faces-redirect=true" ajax="false" immediate="true"/>
-								<p:menuitem value="Listar Plantas" action="list_planta?faces-redirect=true" ajax="false" immediate="true"/>
-							</p:submenu>
-							<p:submenu label="Abonos Quimicos" icon="fa fa-flask">
-					        	<p:menuitem value="Nuevo" action="nuevo-tipo-abono-quimico" ajax="false" immediate="true"/>
-								<p:menuitem value="Listar Abonos Quimicos" action="list-tipo-abono-quimicos" ajax="false" immediate="true"/>
-							</p:submenu>
-							<p:submenu label="Suelos" icon="fa fa-pied-piper">
-					        	<p:menuitem value="Nuevo" action="nuevo_tipo_suelo?faces-redirect=true" ajax="false" immediate="true"/>
-								<p:menuitem value="Listar tipos suelos" action="list_tipo_suelo?faces-redirect=true" ajax="false" immediate="true"/>
-							</p:submenu>
-							<p:submenu label="Plataformas" icon="fa fa-list-ul">
-					        	<p:menuitem value="Nuevo" action="nueva_plataforma?faces-redirect=true" ajax="false" immediate="true"/>
-								<p:menuitem value="Listar Plataformas" action="list_plataforma?faces-redirect=true" ajax="false" immediate="true"/>
-							</p:submenu>
-					        <p:submenu label="Persona" icon="fa fa-user">
-					        	<p:menuitem value="Nuevo" action="nueva_persona?faces-redirect=true" ajax="false" immediate="true"/>
-								<p:menuitem value="Listar Personas" action="list_persona?faces-redirect=true" ajax="false" immediate="true"/>
-							</p:submenu>
-							
-							<p:submenu label="Dispositivos" icon="fa fa-tablet">
-					        	<p:menuitem value="Nuevo" action="nueva_device?faces-redirect=true" ajax="false" immediate="true"/>
-								<p:menuitem value="Listar Dispositivos" action="list_device?faces-redirect=true" ajax="false" immediate="true"/>
-							</p:submenu>
-							
-							<p:submenu label="Usuarios" icon="fa fa-users">
-					        	<p:menuitem value="Nuevo" action="nuevo-usuario" ajax="false" immediate="true"/>
-								<p:menuitem value="Listar Usuarios" action="list-usuarios" ajax="false" immediate="true"/>
-							</p:submenu>
-							<p:submenu label="Sesion" icon="fa fa-user">
-					        	<p:menuitem value="Salir" action="iniciar-sesion?faces-redirect=true" ajax="false" immediate="true"/>
-								
-							</p:submenu>
-					    </p:menubar>
-				
-				
+				<b:thumbnail>
+                      
+                </b:thumbnail>
 				<ui:insert name="barra">
 				</ui:insert>
 					
@@ -113,7 +114,9 @@
 			<ui:insert name="listas">
 			</ui:insert>
 		</h:panelGroup>
-	</h:panelGroup>
+	</b:jumbotron>
+	
+	</b:container>
 	 <p class="footer-text text-center">GAD MUNICIPAL DEL CANTÓN CUENCA</p>
 	 
 </h:body>

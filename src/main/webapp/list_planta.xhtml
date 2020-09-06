@@ -22,13 +22,12 @@ Funcion: Controlador Articulo Controller.
 <ui:composition
 	template="/WEB-INF/facelets/templates/plantillaGeneral.xhtml">
 
-	<ui:define name="cuerpo">
+	<ui:define name="cuerpo" bootsFacesDecorator="true">
 	
-	<div style="width: 40%;">
 	<b:panel id="pn1" title="Plantas" look="primary">
 	<b:dataTable id="tbl" var="plant"
 		value="#{plantaView.plantas}"
-		autoUpdate="true" excel="true" csv="true" columnVisibility="true" copy="true" print="true">
+		autoUpdate="true">
 		
 		<b:dataTableColumn value="#{plant.nombre}" label="Nombre"/>
 		<b:dataTableColumn value="#{plant.cantidadAgua}" label="Cantidad de Agua"/>
@@ -42,7 +41,6 @@ Funcion: Controlador Articulo Controller.
 	</b:dataTable>
 	
 	</b:panel>	
-	</div>
 		
 	</ui:define>
 	
