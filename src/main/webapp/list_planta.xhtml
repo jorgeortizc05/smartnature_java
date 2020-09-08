@@ -30,8 +30,10 @@ Funcion: Controlador Articulo Controller.
 		autoUpdate="true">
 		
 		<b:dataTableColumn value="#{plant.nombre}" label="Nombre"/>
-		<b:dataTableColumn value="#{plant.cantidadAgua}" label="Cantidad de Agua"/>
 		<b:dataTableColumn value="#{plant.descripcion}" label="Descripcion"/>
+		<b:dataTable>
+			<b:image value="/resources/plantas/acelga.jpg"  style="width:30%"/>
+		</b:dataTable>
 		<b:dataTableColumn label="Opciones">
 			<b:commandButton value="X" action="#{plantaView.eliminar(plant.id)}"/>
 			<b:commandButton value="U" action="#{plantaView.goActualizar(plant.id)}"/>
@@ -39,7 +41,7 @@ Funcion: Controlador Articulo Controller.
 		
 		
 	</b:dataTable>
-	
+	<b:image value="/resources/plantas/vegetables.jpg" tooltipPosition="center" style="width:90%"/>
 	</b:panel>	
 		
 	</ui:define>
