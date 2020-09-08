@@ -13,31 +13,72 @@ Fecha de Modificacion: 22/09/2018
 Empresa: FUSIONSYSTEM JORGE INC F.S.J
 Funcion: Controlador Articulo Controller.
 -->
-
+<h:head>
+	<f:metadata>
+        <f:viewAction action="#{plataformaView.loadPlantas()}" />
+        <f:viewAction action="#{plataformaView.loadTipoSuelos()}" />
+ 	</f:metadata>
+</h:head>
 <ui:composition
 	template="/WEB-INF/facelets/templates/plantillaGeneral.xhtml">
 
 	<ui:define name="cuerpo" bootsFacesDecorator="true">
-	
+	<div>
 	<b:panel id="pn1" title="Nueva Plataforma" look="primary">
-	<p:panelGrid columns="3" id="pgPlataforma">
-		<h:outputLabel value="Nombre:" for="nombre" />
-		<b:inputText value="#{plataformaView.newPlataforma.nombre}" id="nombre"/>
-		<p:message for="nombre"/>
+	
+	<b:panelGrid columns="2">
+		<b:panelGrid columns="3" id="pgPlataforma">
+			<h:outputLabel value="Nombre:" for="nombre" />
+			<b:inputText value="#{plataformaView.newPlataforma.nombre}" id="nombre"/>
+			<p:message for="nombre"/>
+			
+			<h:outputLabel value="Descripcion:" for="descripcion" />
+			<b:inputText value="#{plataformaView.newPlataforma.descripcion}" id="descripcion"/>
+			<p:message for="descripcion"/>
+			
+			<h:outputLabel value="Serial:" for="serial" />
+			<b:inputText value="#{plataformaView.newPlataforma.serial}" id="serial"/>
+			<p:message for="serial"/>
+		</b:panelGrid>
+	
 		
-		<h:outputLabel value="Descripcion:" for="descripcion" />
-		<b:inputText value="#{plataformaView.newPlataforma.descripcion}" id="descripcion"/>
-		<p:message for="descripcion"/>
+		<b:panelGrid columns="3" id="pgPlanta">
+			<p:outputLabel for="cod_plan" value="Elija una planta" />
+			<p:selectOneListbox value="#{plataformaView.vIdPlanta}"
+				id="cod_plan" style="width:200px" filter="true"
+				filterMatchMode="contains" scrollHeight="100" required="true"
+				requiredMessage="Debe eligir una planta">
+				<f:selectItems value="#{plataformaView.plantas}" var="plan"
+					itemLabel="#{plan.nombre}"
+					itemValue="#{plan.id}" />
+			</p:selectOneListbox>
+			<b:message for="cod_bio"/>
+		</b:panelGrid>
 		
-		<h:outputLabel value="Serial:" for="serial" />
-		<b:inputText value="#{plataformaView.newPlataforma.serial}" id="serial"/>
-		<p:message for="serial"/>
-	</p:panelGrid>
+		<b:panelGrid columns="3" id="pgTipoSuelo">
+			<p:outputLabel for="cod_tip_suel" value="Elija un tipo de suelo" />
+			<p:selectOneListbox value="#{plataformaView.vIdPlanta}"
+				id="cod_tip_suel" style="width:200px" filter="true"
+				filterMatchMode="contains" scrollHeight="100" required="true"
+				requiredMessage="Debe eligir una planta">
+				<f:selectItems value="#{plataformaView.tipSuelos}" var="tipSuel"
+					itemLabel="#{tipSuel.nombre}"
+					itemValue="#{tipSuel.id}" />
+			</p:selectOneListbox>
+			<b:message for="cod_bio"/>
+		</b:panelGrid>
+	</b:panelGrid>
+	
+	
 		
 		<b:commandButton value="Guardar" action="#{plataformaView.guardarPlataforma()}" update="mensajes pgPlataforma" look="primary"/>
 		<b:commandButton  value="Cancelar" action="list_plataforma?faces-redirect=true" immediate="true" ajax="false" look="danger"/>
 		
 	</b:panel>
+	</div>
+	<div>
+	
+	</div>
 	</ui:define>
 	
 

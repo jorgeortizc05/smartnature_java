@@ -54,12 +54,6 @@ public class HistorialRiego implements Serializable{
 	private Double humedadSuelo;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	private Device device;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Persona persona;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
 	private Plataforma plataforma;
 	
 	/*
@@ -124,22 +118,6 @@ public class HistorialRiego implements Serializable{
 
 	public void setHumedadSuelo(Double humedadSuelo) {
 		this.humedadSuelo = humedadSuelo;
-	}
-
-	public Device getDevice() {
-		return device;
-	}
-
-	public void setDevice(Device device) {
-		this.device = device;
-	}
-
-	public Persona getPersona() {
-		return persona;
-	}
-
-	public void setPersona(Persona persona) {
-		this.persona = persona;
 	}
 
 	public Plataforma getPlataforma() {
