@@ -10,6 +10,8 @@ int sensorAmbiental = 2; //Pin 2 Digital
 int tempAmb, humedadAmb; //Variables para sensor ambiental
 const int electrovalvula = 13; //Pin 13 Digital: HIGH O LOW
 const int humedadSuelo = A0; //Pin A0 analogico.
+const int idDevice = 100;
+const String device = "Dispositivo codigo 100";
 
 DHT dht (sensorAmbiental, DHT11); //Funcion para dht11
 
@@ -47,13 +49,13 @@ void loop() {
 
   
 
-  Serial.print(humedadSuelo);
-  /*Serial.print(";");
-  Serial.print(t);
+  Serial.print(sensorSuelo);
   Serial.print(";");
-  Serial.print(h);
-  Serial.println();*/
-  delay(10000); 
+  Serial.print(idDevice);
+  Serial.print(";");
+  Serial.print(device);
+  Serial.println();
+  delay(1000); 
 
 /*
   if(sensorSuelo >= 700) // el valor que considero seco y hay que regar es de 700
