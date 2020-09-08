@@ -50,6 +50,8 @@ public class Plataforma implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private TipoSuelo tipoSuelo;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Persona persona;
 	
 
 	public int getId() {
@@ -92,4 +94,11 @@ public class Plataforma implements Serializable {
 		this.tipoSuelo = tipoSuelo;
 	}
 
+	public Persona getPersona() {
+		return persona;
+	}
+
+	public void setPersona(Persona persona) {
+		this.persona = persona;
+	}
 }

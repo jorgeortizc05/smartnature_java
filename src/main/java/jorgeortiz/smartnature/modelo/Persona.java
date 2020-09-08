@@ -65,8 +65,8 @@ public class Persona implements Serializable{
 	@Column(name = "pass")
 	private String pass;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Ubicacion ubicacion;
+	/*@ManyToOne(fetch = FetchType.LAZY)
+	private Ubicacion ubicacion;*/
 
 	public int getId() {
 		return id;
@@ -115,15 +115,5 @@ public class Persona implements Serializable{
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
-
-	public Ubicacion getUbicacion() {
-		return ubicacion;
-	}
-
-	public void setUbicacion(Ubicacion ubicacion) {
-		this.ubicacion = ubicacion;
-	}
-	
-	
 
 }

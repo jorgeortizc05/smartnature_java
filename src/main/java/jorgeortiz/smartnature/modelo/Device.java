@@ -37,8 +37,8 @@ public class Device {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Plataforma plataforma;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Ubicacion ubicacion;
+	/*@ManyToOne(fetch = FetchType.LAZY)
+	private Ubicacion ubicacion;*/
 
 	public int getId() {
 		return id;
@@ -71,14 +71,5 @@ public class Device {
 	public void setPlataforma(Plataforma plataforma) {
 		this.plataforma = plataforma;
 	}
-
-	public Ubicacion getUbicacion() {
-		return ubicacion;
-	}
-
-	public void setUbicacion(Ubicacion ubicacion) {
-		this.ubicacion = ubicacion;
-	}
-	
 	
 }
