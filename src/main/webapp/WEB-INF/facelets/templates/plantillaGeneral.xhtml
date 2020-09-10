@@ -59,13 +59,15 @@
 			
 			<h:form id="forma" > 
 				<p:menubar>
+					<p:submenu label="Dashboard" icon="fa fa-tree">
+			        	<p:menuitem value="Dashboard" action="dashboard?faces-redirect=true" ajax="false" immediate="true"/>
+					</p:submenu>
+					<p:submenu label="Control" icon="fa fa-tree">
+			        	<p:menuitem value="Control Manual" action="dashboard?faces-redirect=true" ajax="false" immediate="true"/>
+					</p:submenu>
 			        <p:submenu label="Plantas" icon="fa fa-tree">
 			        	<p:menuitem value="Nuevo" action="nueva_planta?faces-redirect=true" ajax="false" immediate="true"/>
 						<p:menuitem value="Listar Plantas" action="list_planta?faces-redirect=true" ajax="false" immediate="true"/>
-					</p:submenu>
-					<p:submenu label="Abonos Quimicos" icon="fa fa-flask">
-			        	<p:menuitem value="Nuevo" action="nuevo-tipo-abono-quimico" ajax="false" immediate="true"/>
-						<p:menuitem value="Listar Abonos Quimicos" action="list-tipo-abono-quimicos" ajax="false" immediate="true"/>
 					</p:submenu>
 					<p:submenu label="Suelos" icon="fa fa-pied-piper">
 			        	<p:menuitem value="Nuevo" action="nuevo_tipo_suelo?faces-redirect=true" ajax="false" immediate="true"/>

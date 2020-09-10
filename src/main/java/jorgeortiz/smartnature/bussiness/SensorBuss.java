@@ -58,5 +58,16 @@ public class SensorBuss {
 		} else
 			throw new Exception("List [Sensors: null]");
 	}
+	
+	//Obtengo el ultimo sensor registrado en la base de datos
+	public Sensor getLastSensor() throws Exception {
+
+		List<Sensor> auxs = senDAO.findOrderedByDeviceId();
+		Sensor aux = auxs.get(0);
+		if (aux != null) {
+			return aux;
+		} else
+			throw new Exception("getLastSensor [Sensor: null]");
+	}
 
 }

@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:uti="http://java.sun.com/jsf/composite/util"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui"
+    xmlns:p="http://primefaces.org/ui">
+<!-- 
+Autor: ING. JORGE LUIS ORTIZ CACERES
+Fecha de Creacion:14/09/2018
+Fecha de Modificacion: 22/09/2018
+Empresa: CASAORTIZ JORGE INC C.O.J
+Funcion: Controlador Articulo Controller.
+-->
+<h:head>
+	<f:metadata>
+        
+        <f:viewAction action="#{personaView.loadPersonas()}" />
+ 	</f:metadata>
+</h:head>
+<ui:composition
+	template="/WEB-INF/facelets/templates/plantillaGeneral.xhtml">
+
+	<ui:define name="cuerpo" bootsFacesDecorator="true">
+	
+	
+	<b:panel id="pn1" title="Sensores" look="primary">
+		<p:poll interval="1" listener="#{dashboardView.loadLastDevice()}" update="pn_sensors"/>
+		<b:panelGrid columns="3" id="pn_sensors">
+		<h:outputLabel value="Humedad del Suelo" />
+		<h:outputLabel value="Temperatura Ambiente" />
+		<h:outputLabel value="Humedad Ambiente" />
+		
+		<h:outputText value="#{dashboardView.newSensor.humedadSuelo}" id="num_humedad_suelo"/>
+		<h:outputText value="#{dashboardView.newSensor.tempAmbiente}" id="num_temp_ambiente"/>
+		<h:outputText value="#{dashboardView.newSensor.humedadAmbiente}" id="num_humedad_ambiente"/>
+		
+		</b:panelGrid>
+	</b:panel>
+	<b:image value="/resources/plantas/dashboard.jpg" tooltipPosition="center" style="width:90%"/>
+		
+	</ui:define>
+	
+
+
+</ui:composition>
+</html>
