@@ -1,6 +1,8 @@
 package jorgeortiz.smartnature.modelo;
 
 import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -47,7 +49,7 @@ public class Plataforma implements Serializable {
 	@Column(name = "serial")
 	private String serial;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private TipoSuelo tipoSuelo;
 
 	@ManyToOne(fetch = FetchType.LAZY)

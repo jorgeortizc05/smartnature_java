@@ -7,9 +7,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
+import jorgeortiz.smartnature.bussiness.DeviceBuss;
 import jorgeortiz.smartnature.bussiness.PlantaBuss;
 import jorgeortiz.smartnature.bussiness.PlataformaBuss;
 import jorgeortiz.smartnature.bussiness.TipoSueloBuss;
+import jorgeortiz.smartnature.modelo.Device;
 import jorgeortiz.smartnature.modelo.Planta;
 import jorgeortiz.smartnature.modelo.Plataforma;
 import jorgeortiz.smartnature.modelo.TipoSuelo;
@@ -27,21 +29,34 @@ public class PlataformaView {
 	@Inject
 	private TipoSueloBuss tipSuelBuss;
 	
+	@Inject
+	private DeviceBuss devBuss;
+	
 	private Plataforma newPlataforma;
 	private List<Plataforma> plataformas;
 	
 	private List<Planta> plantas;
+	private Planta newPlanta;
 	
 	private List<TipoSuelo> tipSuelos;
+	private TipoSuelo newTipoSuelo;
+	
+	private List<Device> devices;
+	private Device newDevice;
 	
 	//Variables
 	private int vIdPlataforma;
 	private boolean vEditing;
 	private int vIdPlanta;
+	private int vIdDevice;
+	private int vIdTipoSuelo;
 	
 	@PostConstruct
 	public void init() {
 		newPlataforma = new Plataforma();
+		newPlanta = new Planta();
+		newTipoSuelo = new TipoSuelo();
+		newDevice = new Device();
 		vEditing = false;
 	}
 	
@@ -52,6 +67,19 @@ public class PlataformaView {
 				return "list_plataforma?faces-redirect=true";
 			}else {
 				platBuss.guardarPlataforma(newPlataforma);
+				newPlanta = planBuss.buscarPlanta(vIdPlanta);
+				newPlanta.setPlataforma(newPlataforma);
+				planBuss.updatePlanta(newPlanta);
+				
+				
+				newTipoSuelo = tipSuelBuss.buscarTipoSuelo(vIdTipoSuelo);
+				newPlataforma.setTipoSuelo(newTipoSuelo);
+				tipSuelBuss.updateTipoSuelo(newTipoSuelo);
+				
+				newDevice = devBuss.buscarDevice(vIdDevice);
+				newDevice.setPlataforma(newPlataforma);
+				devBuss.updateDevice(newDevice);
+				
 				return "list_plataforma?faces-redirect=true";
 			}
 		
@@ -64,9 +92,9 @@ public class PlataformaView {
 	}
 	
 	
-	public String goActualizar(int id) {
+	public String goActualizar(int idPlataforma, int idPlanta, int idTipoSuelo, int idDevice) {
 		
-		return "editar_plataforma?faces-redirect=true&id="+id;
+		return "editar_plataforma?faces-redirect=true&idPlataforma="+idPlataforma+"&idPlanta="+idPlanta+"&idTipoSuelo"+idTipoSuelo+"&idDevice"+idDevice;
 	}
 	
 	public String eliminar(int id) {
@@ -95,7 +123,6 @@ public class PlataformaView {
 		}
 	}
 	
-	
 	public void loadPlataformas() {
 		try {
 			plataformas = platBuss.getPlataformas();
@@ -117,6 +144,15 @@ public class PlataformaView {
 	public void loadTipoSuelos() {
 		try {
 			tipSuelos = tipSuelBuss.getTipoSuelos();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void loadDevices() {
+		try {
+			devices = devBuss.getDevices();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -171,4 +207,28 @@ public class PlataformaView {
 		this.tipSuelos = tipSuelos;
 	}
 
+	public List<Device> getDevices() {
+		return devices;
+	}
+
+	public void setDevices(List<Device> devices) {
+		this.devices = devices;
+	}
+
+	public int getvIdDevice() {
+		return vIdDevice;
+	}
+
+	public void setvIdDevice(int vIdDevice) {
+		this.vIdDevice = vIdDevice;
+	}
+
+	public int getvIdTipoSuelo() {
+		return vIdTipoSuelo;
+	}
+
+	public void setvIdTipoSuelo(int vIdTipoSuelo) {
+		this.vIdTipoSuelo = vIdTipoSuelo;
+	}
+	
 }

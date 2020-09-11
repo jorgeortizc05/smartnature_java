@@ -1,5 +1,6 @@
 package jorgeortiz.smartnature.modelo;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -34,7 +35,7 @@ public class Device {
 	@Column(name = "descripcion")
 	private String descripcion;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Plataforma plataforma;
 	
 	/*@ManyToOne(fetch = FetchType.LAZY)

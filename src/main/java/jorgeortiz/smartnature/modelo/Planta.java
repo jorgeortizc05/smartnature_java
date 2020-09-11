@@ -1,6 +1,8 @@
 package jorgeortiz.smartnature.modelo;
 
 import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -46,7 +48,7 @@ public class Planta implements Serializable {
 	@Column(name = "cantidad_agua")
 	private Double cantidadAgua;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Plataforma plataforma;
 
 	public int getId() {

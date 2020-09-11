@@ -17,6 +17,7 @@ Funcion: Controlador Articulo Controller.
 	<f:metadata>
         <f:viewAction action="#{plataformaView.loadPlantas()}" />
         <f:viewAction action="#{plataformaView.loadTipoSuelos()}" />
+        <f:viewAction action="#{plataformaView.loadDevices()}" />
  	</f:metadata>
 </h:head>
 <ui:composition
@@ -33,7 +34,7 @@ Funcion: Controlador Articulo Controller.
 			<p:message for="nombre"/>
 			
 			<h:outputLabel value="Descripcion:" for="descripcion" />
-			<b:inputText value="#{plataformaView.newPlataforma.descripcion}" id="descripcion"/>
+			<b:inputTextarea value="#{plataformaView.newPlataforma.descripcion}" id="descripcion"/>
 			<p:message for="descripcion"/>
 			
 			<h:outputLabel value="Serial:" for="serial" />
@@ -52,12 +53,12 @@ Funcion: Controlador Articulo Controller.
 					itemLabel="#{plan.nombre}"
 					itemValue="#{plan.id}" />
 			</p:selectOneListbox>
-			<b:message for="cod_bio"/>
+			<b:message for="cod_plan"/>
 		</b:panelGrid>
 		
 		<b:panelGrid columns="3" id="pgTipoSuelo">
 			<p:outputLabel for="cod_tip_suel" value="Elija un tipo de suelo" />
-			<p:selectOneListbox value="#{plataformaView.vIdPlanta}"
+			<p:selectOneListbox value="#{plataformaView.vIdTipoSuelo}"
 				id="cod_tip_suel" style="width:200px" filter="true"
 				filterMatchMode="contains" scrollHeight="100" required="true"
 				requiredMessage="Debe eligir una planta">
@@ -65,7 +66,20 @@ Funcion: Controlador Articulo Controller.
 					itemLabel="#{tipSuel.nombre}"
 					itemValue="#{tipSuel.id}" />
 			</p:selectOneListbox>
-			<b:message for="cod_bio"/>
+			<b:message for="cod_tip_sue"/>
+		</b:panelGrid>
+		
+		<b:panelGrid columns="3" id="pgDevice">
+			<p:outputLabel for="cod_device" value="Elija un dispositivo" />
+			<p:selectOneListbox value="#{plataformaView.vIdDevice}"
+				id="cod_device" style="width:200px" filter="true"
+				filterMatchMode="contains" scrollHeight="100" required="true"
+				requiredMessage="Debe eligir una planta">
+				<f:selectItems value="#{plataformaView.devices}" var="dev"
+					itemLabel="#{dev.nombre}"
+					itemValue="#{dev.id}" />
+			</p:selectOneListbox>
+			<b:message for="cod_device"/>
 		</b:panelGrid>
 	</b:panelGrid>
 	
