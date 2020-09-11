@@ -37,4 +37,13 @@ public class SensorDAO {
 		List<Sensor> items = query.getResultList();
 		return items;
 	}
+	
+	public List<Sensor> findOrderedByDeviceId(){
+		
+		String jpql = "SELECT s FROM Sensor s ORDER BY s.id desc";
+		Query query = em.createQuery(jpql, Sensor.class);
+		query.setMaxResults(1);
+		List<Sensor> items = query.getResultList();
+		return items;
+	}
 }

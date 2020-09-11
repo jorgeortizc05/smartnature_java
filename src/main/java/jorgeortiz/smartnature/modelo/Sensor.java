@@ -14,6 +14,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 /*
  * Realizado por: Jorge Luis Ortiz Caceres
@@ -46,6 +48,7 @@ public class Sensor implements Serializable {
 	@Column(name = "humedad_suelo")
 	private Double humedadSuelo;
 	
+	@JsonIgnore
 	@Column(name = "fecha_captura")
 	private Date fechaCaptura = new Date();
 	

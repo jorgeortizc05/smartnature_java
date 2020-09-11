@@ -16,7 +16,7 @@ Funcion: Controlador Articulo Controller.
 <h:head>
 	<f:metadata>
         
-        <f:viewAction action="#{deviceView.loadDevices()}" />
+        <f:viewAction action="#{personaView.loadPersonas()}" />
  	</f:metadata>
 </h:head>
 <ui:composition
@@ -25,23 +25,21 @@ Funcion: Controlador Articulo Controller.
 	<ui:define name="cuerpo" bootsFacesDecorator="true">
 	
 	
-	<b:panel id="pn1" title="Dispositivos" look="primary">
-	<b:dataTable id="tbl" var="dev"
-		value="#{deviceView.devices}"
-		autoUpdate="true">
+	<b:panel id="pn1" title="Sensores" look="primary">
+		<p:poll interval="1" listener="#{dashboardView.loadLastDevice()}" update="pn_sensors"/>
+		<b:panelGrid columns="3" id="pn_sensors">
+		<h:outputLabel value="Humedad del Suelo" />
+		<h:outputLabel value="Temperatura Ambiente" />
+		<h:outputLabel value="Humedad Ambiente" />
 		
-		<b:dataTableColumn value="#{dev.nombre}" label="Nombre"/>
-		<b:dataTableColumn value="#{dev.descripcion}" label="Descripcion"/>
-		<b:dataTableColumn label="Opciones">
-			<b:commandButton value="X" action="#{deviceView.eliminar(dev.id)}"/>
-			<b:commandButton value="U" action="#{deviceView.goActualizar(dev.id)}"/>
-		</b:dataTableColumn>
+		<h:outputText value="#{dashboardView.newSensor.humedadSuelo}" id="num_humedad_suelo"/>
+		<h:outputText value="#{dashboardView.newSensor.tempAmbiente} Centigrados" id="num_temp_ambiente"/>
+		<h:outputText value="#{dashboardView.newSensor.humedadAmbiente} % RH" id="num_humedad_ambiente"/>
 		
-		
-	</b:dataTable>
-	
+		</b:panelGrid>
 	</b:panel>
-	<b:image value="/resources/iot/iot.jpg" tooltipPosition="center" style="width:90%"/>
+	<b:image value="/resources/plantas/dashboard.jpg" tooltipPosition="center" style="width:90%"/>
+		
 	</ui:define>
 	
 
