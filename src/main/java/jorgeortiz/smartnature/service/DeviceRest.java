@@ -16,7 +16,7 @@ import javax.ws.rs.core.Response;
 import jorgeortiz.smartnature.bussiness.DeviceBuss;
 import jorgeortiz.smartnature.modelo.Device;
 
-@Path("/device")
+@Path("/parametros")
 public class DeviceRest {
 
 	@Inject

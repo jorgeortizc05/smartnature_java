@@ -23,6 +23,9 @@ void setup() {
   dht.begin();
 
   pinMode(humedadSueloA0, INPUT); //Valores como entrada
+  pinMode(humedadSueloA1, INPUT); //Valores como entrada
+  pinMode(humedadSueloA2, INPUT); //Valores como entrada
+  pinMode(sensorAmbiental, INPUT);
   pinMode(electrovalvula, OUTPUT); //Valores como salida, se abre o cierra
 }
 
@@ -66,13 +69,21 @@ void loop() {
   Serial.print(hic);
   Serial.print(";");
   Serial.print(promedioHumedadSuelo);
-  Serial.print(";");
-  Serial.print(idDevice);
-  Serial.print(";");
-  Serial.print(device);
   Serial.println();
-  delay(1000); 
+   
+  if (Serial.available()) 
+   {
+      char parametro = Serial.read();
+      if (parametro == '0')
+      {
+         digitalWrite(electrovalvula, LOW);
+      }
 
+      if( parametro == '1'){
+        digitalWrite(electrovalvula, HIGH);
+      }
+   }
+  delay(2000);
 /*
   if(sensorSuelo >= 700) // el valor que considero seco y hay que regar es de 700
   {
