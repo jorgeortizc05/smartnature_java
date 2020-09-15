@@ -14,11 +14,8 @@ Empresa: CASAORTIZ JORGE INC C.O.J
 Funcion: Controlador Articulo Controller.
 -->
 <h:head>
-	<f:metadata>
-        
-        <f:viewAction action="#{personaView.loadPersonas()}" />
- 	</f:metadata>
 </h:head>
+
 <ui:composition
 	template="/WEB-INF/facelets/templates/plantillaGeneral.xhtml">
 
@@ -26,7 +23,7 @@ Funcion: Controlador Articulo Controller.
 	
 	
 	<b:panel id="pn1" title="Sensores" look="primary">
-		<p:poll interval="1" listener="#{dashboardView.loadLastDevice()}" update="pn_sensors"/>
+	    <p:poll listener="#{dashboardView.loadLastDevice()}" update="pn_sensors"/>
 		<b:panelGrid columns="3" id="pn_sensors">
 		<h:outputLabel value="Humedad del Suelo" />
 		<h:outputLabel value="Temperatura Ambiente" />
