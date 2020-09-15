@@ -3,23 +3,27 @@
 FUNCTION_BLOCK controlador
 
 VAR_INPUT
-	calor : REAL;
+	humedad : REAL;
 END_VAR
 
 VAR_OUTPUT
-	velocidad : REAL;
+	riego : REAL;
 END_VAR
 
-FUZZIFY calor
-	TERM bajo := (0,0) (3,1) (6,0);
-	TERM medio := (3,0) (6,1) (9,1) (12,0);
-	TERM alto := (9,0) (12,1) (15,0);
+FUZZIFY humedad
+	TERM encharcado := (0,0) (250,1) (500,0);
+	TERM semiHumedo := (400,0) (575,1) (750,0);
+	TERM humedo := (550,0) (725,1) (900,0);
+	TERM semiSeco := (800,0) (895,1) (990,0);
+	TERM seco := (850,0) (936,1) (1023,0);
 END_FUZZIFY
 
-DEFUZZIFY velocidad
-	TERM lento := (0,0) (4,1) (8,0);
-	TERM media := (7,0) (10,1) (13,0);
-	TERM alta := (11,0) (14,1) (17,0);
+DEFUZZIFY riego
+	TERM nada := (0,0);
+	TERM poco := (0,0) (2,1) (4,0);
+	TERM medio := (2,0) (5,1) (8,0);
+	TERM bastante := (6,0) (9,1) (12,0);
+	TERM mucho := (10,0) (13,1) (17,0);
 	
 	METHOD: COG;
 	DEFAULT := 0;
@@ -30,9 +34,11 @@ RULEBLOCK No1
 	ACT : MIN;
 	ACCU : MAX;
 	
-	RULE 1 : IF calor IS bajo THEN velocidad IS lento;
-	RULE 2 : IF calor IS medio THEN velocidad IS media;
-	RULE 3 : IF calor IS alto THEN velocidad IS alta;
+	RULE 1 : IF humedad IS encharcado THEN riego IS nada;
+	RULE 2 : IF humedad IS semiHumedo THEN riego IS poco;
+	RULE 3 : IF humedad IS humedo THEN riego IS medio;
+	RULE 4 : IF humedad IS semiSeco THEN riego IS bastante;
+	RULE 5 : IF humedad IS seco THEN riego IS mucho;
 END_RULEBLOCK
 
 
