@@ -11,3 +11,12 @@
 		<password>jorge</password>
 	</security>
 </datasource>
+
+<interfaces>
+    <interface name="management">
+        <any-address/>
+    </interface>
+    <interface name="public">
+        <any-address/>
+    </interface>
+</interfaces>
