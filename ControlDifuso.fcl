@@ -3,27 +3,41 @@
 FUNCTION_BLOCK controlador
 
 VAR_INPUT
-	humedad : REAL;
+	humedadSuelo : REAL;
+	temperaturaAmbiente : REAL;
+	humedadAmbiente : REAL;
 END_VAR
 
 VAR_OUTPUT
 	riego : REAL;
 END_VAR
 
-FUZZIFY humedad
-	TERM encharcado := (0,0) (250,1) (500,0);
-	TERM semiHumedo := (400,0) (575,1) (750,0);
-	TERM humedo := (550,0) (725,1) (900,0);
-	TERM semiSeco := (800,0) (895,1) (990,0);
-	TERM seco := (850,0) (936,1) (1023,0);
+FUZZIFY humedadSuelo
+	TERM encharcado := (750,0) (825,1) (900,0);
+	TERM semiHumedo := (658,0) (725,1) (792,0);
+	TERM humedo := (450,0) (572,1) (694,0);
+	TERM semiSeco := (120,0) (310,1) (500,0);
+	TERM seco := (0,0) (100,1) (200,0);
+END_FUZZIFY
+
+FUZZIFY temperaturaAmbiente
+	TERM baja := (-5,0) (2,1) (10,0);
+	TERM media := (2,0) (17,1) (27,0);
+	TERM alta := (24,0) (34,1) (45,0);
+END_FUZZIFY
+
+FUZZIFY humedadAmbiente
+	TERM baja := (0,0) (16,1) (33,0);
+	TERM media := (16,0) (41,1) (66,0);
+	TERM alta := (41,0) (70,1) (100,0);
 END_FUZZIFY
 
 DEFUZZIFY riego
-	TERM nada := (0,0);
+	TERM nada := (0,0) (0,1) (0,0);
 	TERM poco := (0,0) (2,1) (4,0);
-	TERM medio := (2,0) (5,1) (8,0);
-	TERM bastante := (6,0) (9,1) (12,0);
-	TERM mucho := (10,0) (13,1) (17,0);
+	TERM medio := (3,0) (6,1) (9,0);
+	TERM bastante := (7,0) (9,1) (12,0);
+	TERM mucho := (10,0) (13,1) (17,1);
 	
 	METHOD: COG;
 	DEFAULT := 0;
@@ -34,11 +48,56 @@ RULEBLOCK No1
 	ACT : MIN;
 	ACCU : MAX;
 	
-	RULE 1 : IF humedad IS encharcado THEN riego IS nada;
-	RULE 2 : IF humedad IS semiHumedo THEN riego IS poco;
-	RULE 3 : IF humedad IS humedo THEN riego IS medio;
-	RULE 4 : IF humedad IS semiSeco THEN riego IS bastante;
-	RULE 5 : IF humedad IS seco THEN riego IS mucho;
+	RULE 1 : IF humedadSuelo IS encharcado AND temperaturaAmbiente IS baja AND humedadAmbiente IS baja THEN riego IS nada;
+	RULE 2 : IF humedadSuelo IS encharcado AND temperaturaAmbiente IS baja AND humedadAmbiente IS media THEN riego IS nada;
+	RULE 3 : IF humedadSuelo IS encharcado AND temperaturaAmbiente IS baja AND humedadAmbiente IS alta THEN riego IS nada;
+	RULE 4 : IF humedadSuelo IS encharcado AND temperaturaAmbiente IS media AND humedadAmbiente IS baja THEN riego IS nada;
+	RULE 5 : IF humedadSuelo IS encharcado AND temperaturaAmbiente IS media AND humedadAmbiente IS media THEN riego IS nada;
+	RULE 6 : IF humedadSuelo IS encharcado AND temperaturaAmbiente IS media AND humedadAmbiente IS alta THEN riego IS nada;
+	RULE 7 : IF humedadSuelo IS encharcado AND temperaturaAmbiente IS alta AND humedadAmbiente IS baja THEN riego IS nada;
+	RULE 8 : IF humedadSuelo IS encharcado AND temperaturaAmbiente IS alta AND humedadAmbiente IS media THEN riego IS nada;
+	RULE 9 : IF humedadSuelo IS encharcado AND temperaturaAmbiente IS alta AND humedadAmbiente IS alta THEN riego IS nada;
+	
+	RULE 10 : IF humedadSuelo IS semiHumedo AND temperaturaAmbiente IS baja AND humedadAmbiente IS baja THEN riego IS nada;
+	RULE 11 : IF humedadSuelo IS semiHumedo AND temperaturaAmbiente IS baja AND humedadAmbiente IS media THEN riego IS nada;
+	RULE 12 : IF humedadSuelo IS semiHumedo AND temperaturaAmbiente IS baja AND humedadAmbiente IS alta THEN riego IS nada;
+	RULE 13 : IF humedadSuelo IS semiHumedo AND temperaturaAmbiente IS media AND humedadAmbiente IS baja THEN riego IS poco;
+	RULE 14 : IF humedadSuelo IS semiHumedo AND temperaturaAmbiente IS media AND humedadAmbiente IS media THEN riego IS nada;
+	RULE 15 : IF humedadSuelo IS semiHumedo AND temperaturaAmbiente IS media AND humedadAmbiente IS alta THEN riego IS nada;
+	RULE 16 : IF humedadSuelo IS semiHumedo AND temperaturaAmbiente IS alta AND humedadAmbiente IS baja THEN riego IS medio;
+	RULE 17 : IF humedadSuelo IS semiHumedo AND temperaturaAmbiente IS alta AND humedadAmbiente IS media THEN riego IS poco;
+	RULE 18 : IF humedadSuelo IS semiHumedo AND temperaturaAmbiente IS alta AND humedadAmbiente IS alta THEN riego IS nada;
+	
+	RULE 19 : IF humedadSuelo IS humedo AND temperaturaAmbiente IS baja AND humedadAmbiente IS baja THEN riego IS nada;
+	RULE 20 : IF humedadSuelo IS humedo AND temperaturaAmbiente IS baja AND humedadAmbiente IS media THEN riego IS nada;
+	RULE 21 : IF humedadSuelo IS humedo AND temperaturaAmbiente IS baja AND humedadAmbiente IS alta THEN riego IS nada;
+	RULE 22 : IF humedadSuelo IS humedo AND temperaturaAmbiente IS media AND humedadAmbiente IS baja THEN riego IS poco;
+	RULE 23 : IF humedadSuelo IS humedo AND temperaturaAmbiente IS media AND humedadAmbiente IS media THEN riego IS poco;
+	RULE 24 : IF humedadSuelo IS humedo AND temperaturaAmbiente IS media AND humedadAmbiente IS alta THEN riego IS nada;
+	RULE 25 : IF humedadSuelo IS humedo AND temperaturaAmbiente IS alta AND humedadAmbiente IS baja THEN riego IS medio;
+	RULE 26 : IF humedadSuelo IS humedo AND temperaturaAmbiente IS alta AND humedadAmbiente IS media THEN riego IS poco;
+	RULE 27 : IF humedadSuelo IS humedo AND temperaturaAmbiente IS alta AND humedadAmbiente IS alta THEN riego IS nada;
+	
+	RULE 28 : IF humedadSuelo IS semiSeco AND temperaturaAmbiente IS baja AND humedadAmbiente IS baja THEN riego IS poco;
+	RULE 29 : IF humedadSuelo IS semiSeco AND temperaturaAmbiente IS baja AND humedadAmbiente IS media THEN riego IS nada;
+	RULE 30 : IF humedadSuelo IS semiSeco AND temperaturaAmbiente IS baja AND humedadAmbiente IS alta THEN riego IS nada;
+	RULE 31 : IF humedadSuelo IS semiSeco AND temperaturaAmbiente IS media AND humedadAmbiente IS baja THEN riego IS bastante;
+	RULE 32 : IF humedadSuelo IS semiSeco AND temperaturaAmbiente IS media AND humedadAmbiente IS media THEN riego IS medio;
+	RULE 33 : IF humedadSuelo IS semiSeco AND temperaturaAmbiente IS media AND humedadAmbiente IS alta THEN riego IS poco;
+	RULE 34 : IF humedadSuelo IS semiSeco AND temperaturaAmbiente IS alta AND humedadAmbiente IS baja THEN riego IS mucho;
+	RULE 35 : IF humedadSuelo IS semiSeco AND temperaturaAmbiente IS alta AND humedadAmbiente IS media THEN riego IS bastante;
+	RULE 36 : IF humedadSuelo IS semiSeco AND temperaturaAmbiente IS alta AND humedadAmbiente IS alta THEN riego IS mucho;
+	
+	RULE 37 : IF humedadSuelo IS seco AND temperaturaAmbiente IS baja AND humedadAmbiente IS baja THEN riego IS medio;
+	RULE 38 : IF humedadSuelo IS seco AND temperaturaAmbiente IS baja AND humedadAmbiente IS media THEN riego IS medio;
+	RULE 39 : IF humedadSuelo IS seco AND temperaturaAmbiente IS baja AND humedadAmbiente IS alta THEN riego IS poco;
+	RULE 40 : IF humedadSuelo IS seco AND temperaturaAmbiente IS media AND humedadAmbiente IS baja THEN riego IS mucho;
+	RULE 41 : IF humedadSuelo IS seco AND temperaturaAmbiente IS media AND humedadAmbiente IS media THEN riego IS mucho;
+	RULE 42 : IF humedadSuelo IS seco AND temperaturaAmbiente IS media AND humedadAmbiente IS alta THEN riego IS bastante;
+	RULE 43 : IF humedadSuelo IS seco AND temperaturaAmbiente IS alta AND humedadAmbiente IS baja THEN riego IS mucho;
+	RULE 44 : IF humedadSuelo IS seco AND temperaturaAmbiente IS alta AND humedadAmbiente IS media THEN riego IS mucho;
+	RULE 45 : IF humedadSuelo IS seco AND temperaturaAmbiente IS alta AND humedadAmbiente IS alta THEN riego IS mucho;
+	
 END_RULEBLOCK
 
 
