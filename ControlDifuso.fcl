@@ -21,8 +21,8 @@ FUZZIFY humedadSuelo
 END_FUZZIFY
 
 FUZZIFY temperaturaAmbiente
-	TERM baja := (-5,0) (2,1) (10,0);
-	TERM media := (2,0) (17,1) (27,0);
+	TERM baja := (5,0) (7,1) (10,0);
+	TERM media := (8,0) (17,1) (27,0);
 	TERM alta := (24,0) (34,1) (45,0);
 END_FUZZIFY
 

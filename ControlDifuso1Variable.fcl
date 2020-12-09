@@ -1,0 +1,47 @@
+
+
+FUNCTION_BLOCK controlador
+
+VAR_INPUT
+	humedadSuelo : REAL;
+END_VAR
+
+VAR_OUTPUT
+	riego : REAL;
+END_VAR
+
+FUZZIFY humedadSuelo
+	TERM encharcado := (750,0) (825,1) (900,0);
+	TERM semiHumedo := (658,0) (725,1) (792,0);
+	TERM humedo := (450,0) (572,1) (694,0);
+	TERM semiSeco := (120,0) (310,1) (500,0);
+	TERM seco := (0,0) (100,1) (200,0);
+END_FUZZIFY
+
+DEFUZZIFY riego
+	TERM nada := (0,0) (0,1) (0,0);
+	TERM poco := (0,0) (2,1) (4,0);
+	TERM medio := (3,0) (6,1) (9,0);
+	TERM bastante := (7,0) (9,1) (12,0);
+	TERM mucho := (10,0) (13,1) (17,0);
+	
+	METHOD: COG;
+	DEFAULT := 0;
+END_DEFUZZIFY
+
+RULEBLOCK No1
+	AND : MIN;
+	ACT : MIN;
+	ACCU : MAX;
+	
+	RULE 1 : IF humedadSuelo IS encharcado THEN riego IS nada;
+	RULE 2 : IF humedadSuelo IS semiHumedo THEN riego IS poco;
+	RULE 3 : IF humedadSuelo IS humedo THEN riego IS medio;
+	RULE 4 : IF humedadSuelo IS semiSeco THEN riego IS bastante;
+	RULE 5 : IF humedadSuelo IS seco THEN riego IS mucho;
+	
+END_RULEBLOCK
+
+
+
+END_FUNCTION_BLOCK
